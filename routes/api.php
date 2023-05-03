@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\peliculasController;
 use App\Http\Controllers\Api\usuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,15 @@ Route::controller(usuarioController::class)->group(function () {
     Route::get('/usuario/{id}', 'show');
     Route::put('/usuario/{id}', 'update');
     Route::delete('/usuario/{id}', 'destroy');
+
+});
+
+Route::controller(peliculasController::class)->group(function () {
+
+    Route::get('/peliculas', 'index');
+    Route::post('/pelicula', 'store');
+    Route::get('/pelicula/{id}', 'show');
+    Route::put('/pelicula/{id}', 'update');
+    Route::delete('/pelicula/{id}', 'destroy');
 
 });

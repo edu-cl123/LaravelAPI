@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('genero');
             $table->string('ano');
             $table->string('guion');
+            $table->integer('id_usuario');
             $table->timestamps();
         });
     }

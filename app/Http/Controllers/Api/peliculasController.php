@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\peliculas;
 
 class peliculasController extends Controller
 {
@@ -12,7 +13,9 @@ class peliculasController extends Controller
      */
     public function index()
     {
-        //
+            //
+            $peliculas = peliculas::all();
+            return $peliculas;
     }
 
     /**
@@ -20,7 +23,16 @@ class peliculasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelicula = new peliculas();
+        $pelicula-> nombre = $request->nombre;
+        $pelicula->director = $request->director;
+        $pelicula->genero = $request->genero;
+        $pelicula->ano = $request->ano;
+        $pelicula->guion = $request->guion;
+        $pelicula->id_usuario = $request->id_usuario;
+
+        $pelicula->save();
+        return 1;
     }
 
     /**
@@ -28,7 +40,8 @@ class peliculasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pelicula=peliculas::find($id);
+        return $pelicula;
     }
 
     /**
@@ -36,7 +49,18 @@ class peliculasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pelicula=peliculas::findOrFail($request->$id);
+
+        $pelicula = new peliculas();
+        $pelicula-> nombre = $request->nombre;
+        $pelicula->director = $request->director;
+        $pelicula->genero = $request->genero;
+        $pelicula->ano = $request->ano;
+        $pelicula->guion = $request->guion;
+        $pelicula->id_usuario = $request->id_usuario;
+
+        $pelicula->save();
+        return $pelicula;
     }
 
     /**
@@ -44,6 +68,6 @@ class peliculasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelicula=peliculas::destroy($id);
     }
 }
