@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\usuario;
+use Illuminate\Support\Facades\Log;
 
 
 class usuarioController extends Controller
@@ -38,9 +40,17 @@ class usuarioController extends Controller
      */
     public function show(string $id)
     {
-        $usuario=usuario::find($id);
+        $usuario = usuario::find($id);
         return $usuario;
     }
+
+
+    public function getuserbyusername( $username)
+    {
+        $usuario = usuario::where('usuario', '=', $username)->get();
+        return $usuario;
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -48,7 +58,7 @@ class usuarioController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $usuario=usuario::findOrFail($request->$id);
+        $usuario = usuario::findOrFail($request->$id);
         $usuario->usuario = $request->usuario;
         $usuario->correo = $request->correo;
         $usuario->contrasena = $request->contrasena;
@@ -62,7 +72,7 @@ class usuarioController extends Controller
      */
     public function destroy(string $id)
     {
-        $usuario=usuario::destroy($id);
+        $usuario = usuario::destroy($id);
         //
     }
 }

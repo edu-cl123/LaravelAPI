@@ -47,11 +47,10 @@ class peliculasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $pelicula=peliculas::findOrFail($request->$id);
+        $pelicula=peliculas::findOrFail($id);
 
-        $pelicula = new peliculas();
         $pelicula-> nombre = $request->nombre;
         $pelicula->director = $request->director;
         $pelicula->genero = $request->genero;
@@ -66,7 +65,7 @@ class peliculasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $pelicula=peliculas::destroy($id);
     }

@@ -16,6 +16,7 @@ Route::controller(usuarioController::class)->group(function () {
     Route::get('/usuarios', 'index');
     Route::post('/usuario', 'store');
     Route::get('/usuario/{id}', 'show');
+    Route::get('/usuarioByuser/{username}', 'getuserbyusername');
     Route::put('/usuario/{id}', 'update');
     Route::delete('/usuario/{id}', 'destroy');
 
